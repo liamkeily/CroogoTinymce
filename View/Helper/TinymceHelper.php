@@ -101,15 +101,15 @@ class TinymceHelper extends AppHelper {
 		}
 		$action = Inflector::camelize($this->params['controller']) . '/' . $this->params['action'];
 		if (Configure::read('Writing.wysiwyg') && isset($this->actions[$action])) {
-			$this->Html->script(array('/Tinymce/js/tinymce.min','/Tinymce/js/wysiwyg'), array('inline' => false));
+			$this->Html->script(array('Tinymce.tinymce.min','Tinymce.wysiwyg'), array('inline' => false));
 			
 			$this->_CroogoPlugin = new CroogoPlugin();
 			if($this->_CroogoPlugin->isActive('el_finder')) {
 				$this->Html->css(
-				  array('http://code.jquery.com/ui/1.8.18/themes/smoothness/jquery-ui.css', '/ElFinder/elfinder/css/elfinder.min'),
+				  array('/croogo/ui-themes/smoothness/jquery-ui', 'ElFinder.elfinder.min'),
 				  null, array('inline' => false)
 				);
-				$this->Html->script(array('/ElFinder/elfinder/js/tinymce.plugin'), array('inline' => false));
+				$this->Html->script(array('ElFinder.tinymce.plugin'), array('inline' => false));
 			}
 			
 			$settings = $this->getSettings();
